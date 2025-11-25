@@ -2,13 +2,12 @@ extends CharacterBody2D
 
 class_name Enemy
 
-@onready var hurtbox: Area2D = $Hurtbox
+var _pv: int = 100
 
-var pv: int = 100
+signal sig_hurt
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	hurtbox.connect("area_entered", on_area_entered)
 	pass # Replace with function body.
 
 
@@ -19,8 +18,13 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 
-func on_area_entered(area) -> void:
-	if area is Hitbox:
-		print("enemy hurt")
-		
-	pass
+
+func getPv() -> int:
+	return _pv
+
+func setPv(pv: int) -> void:
+	_pv = pv
+
+func hurt(power: int) -> void:
+	setPv(getPv() - power)
+	sig_hurt.emit()

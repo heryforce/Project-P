@@ -22,7 +22,7 @@ func physics_update(delta: float) -> void:
 	var axis_x = Input.get_axis("run_left", "run_right")
 	player.velocity.x = GameManager.SPEED * delta * axis_x
 	if axis_x == 0.0:
-		transition.emit(self, "PlayerIdle")
+		transition.emit(self, "Idle")
 	else:
 		if axis_x > 0.0:
 			anim_sprite.flip_h = false

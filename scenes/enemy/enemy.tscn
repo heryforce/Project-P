@@ -1,16 +1,37 @@
-[gd_scene load_steps=44 format=3 uid="uid://7q5kpwe2gm2j"]
+[gd_scene load_steps=49 format=3 uid="uid://7q5kpwe2gm2j"]
 
 [ext_resource type="Script" uid="uid://br81y7byuv82r" path="res://scenes/enemy/enemy.gd" id="1_40wdo"]
 [ext_resource type="Texture2D" uid="uid://d0d5hthllgryp" path="res://assets/images/fantome/Framesheet.png" id="2_40wdo"]
 [ext_resource type="Texture2D" uid="uid://bavndurdiq3bl" path="res://assets/images/char_1/attack_from_air.png" id="3_tjssy"]
-[ext_resource type="Script" uid="uid://dtfygjeaqqfdg" path="res://scenes/enemy/state_machine.gd" id="4_tjssy"]
+[ext_resource type="PackedScene" uid="uid://dr54vnk6swpir" path="res://scenes/state_machine/state_machine.tscn" id="4_nbhyu"]
 [ext_resource type="Script" uid="uid://dkx1qj4pb72f6" path="res://scenes/enemy/enemy_idle.gd" id="5_gl05p"]
 [ext_resource type="Script" uid="uid://ci005g44k5mtk" path="res://scenes/enemy/enemy_wander.gd" id="6_cwlon"]
 [ext_resource type="Script" uid="uid://bbosvmna5obkk" path="res://scenes/enemy/enemy_hurt.gd" id="7_nbhyu"]
+[ext_resource type="Script" uid="uid://pql5fgkrf6p4" path="res://scenes/enemy/enemy_dead.gd" id="8_13gj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
 atlas = ExtResource("2_40wdo")
 region = Rect2(0, 325, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4efjx"]
+atlas = ExtResource("2_40wdo")
+region = Rect2(0, 130, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvxgb"]
+atlas = ExtResource("2_40wdo")
+region = Rect2(65, 130, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peoo5"]
+atlas = ExtResource("2_40wdo")
+region = Rect2(130, 130, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f3il"]
+atlas = ExtResource("2_40wdo")
+region = Rect2(195, 130, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtxhd"]
+atlas = ExtResource("2_40wdo")
+region = Rect2(260, 130, 65, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcs02"]
 atlas = ExtResource("2_40wdo")
@@ -152,6 +173,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4efjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvxgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peoo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f3il")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtxhd")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fcs02")
 }, {
 "duration": 1.0,
@@ -202,7 +243,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lgqa7")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -296,40 +337,17 @@ animations = [{
 radius = 12.0
 height = 38.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_40wdo"]
-radius = 15.0
-height = 40.0
-
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_40wdo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, 0)
 sprite_frames = SubResource("SpriteFrames_gl05p")
-animation = &"run"
+animation = &"hurt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 12)
 shape = SubResource("CapsuleShape2D_a3pup")
-
-[node name="Hurtbox" type="Area2D" parent="."]
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(4, 12)
-shape = SubResource("CapsuleShape2D_40wdo")
-
-[node name="EnemyStateMachine" type="Node" parent="."]
-script = ExtResource("4_tjssy")
-
-[node name="EnemyIdle" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("5_gl05p")
-
-[node name="EnemyWander" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("6_cwlon")
-
-[node name="EnemyHurt" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("7_nbhyu")
 
 [node name="WanderingTimer" type="Timer" parent="."]
 wait_time = 0.75
@@ -338,5 +356,16 @@ one_shot = true
 [node name="IdleTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="WanderingTimer" to="EnemyStateMachine/EnemyWander" method="on_timer_timeout"]
-[connection signal="timeout" from="IdleTimer" to="EnemyStateMachine/EnemyIdle" method="_on_timer_timeout"]
+[node name="StateMachine" parent="." instance=ExtResource("4_nbhyu")]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_gl05p")
+
+[node name="EnemyWander" type="Node" parent="StateMachine"]
+script = ExtResource("6_cwlon")
+
+[node name="EnemyHurt" type="Node" parent="StateMachine"]
+script = ExtResource("7_nbhyu")
+
+[node name="EnemyDead" type="Node" parent="StateMachine"]
+script = ExtResource("8_13gj6")

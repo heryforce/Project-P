@@ -8,7 +8,7 @@ var current_state: State
 @export var initial_state: State
 
 func _ready() -> void:
-	initial_state = $PlayerIdle
+	initial_state = $Idle
 	for child in get_children():
 		if child is State:
 			#pour chaque State de ma FSM, je les push dans mon hash et je connecte au signal pour détecter les changements d'état

@@ -4,10 +4,11 @@ class_name Player
 
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-var can_jump: bool = true
-var ignore_gravity: bool = false
-var pv: int = 100
-var mana: int = 100
+var _can_jump: bool = true
+var _ignore_gravity: bool = false
+var _pv: int = 100
+var _mana: int = 100
+var _power: int = 10
 
 func _ready() -> void:
 	pass
@@ -17,9 +18,27 @@ func _process(delta: float) -> void:
 	
 func _physics_process(delta: float) -> void:
 	if is_on_floor() == false:
-		can_jump = false
-		if ignore_gravity == false:
+		setCanJump(false)
+		if getIgnoreGravity() == false:
 			velocity.y += GameManager.GRAVITY * delta
 	else:
-		can_jump = true
+		setCanJump(true)
 	move_and_slide()
+
+func setCanJump(value: bool) -> void:
+	_can_jump = value
+
+func canJump() -> bool:
+	return _can_jump
+
+func getIgnoreGravity() -> bool:
+	return _ignore_gravity
+
+func getPv() -> int:
+	return _pv
+
+func setPv(pv: int) -> void:
+	_pv = pv
+
+func getPower() -> int:
+	return _power

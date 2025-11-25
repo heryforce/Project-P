@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ca4upie1hr1s" path="res://scenes/player/player.gd" id="1_p47bc"]
 [ext_resource type="Texture2D" uid="uid://d0d5hthllgryp" path="res://assets/images/fantome/Framesheet.png" id="2_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://bavndurdiq3bl" path="res://assets/images/char_1/attack_from_air.png" id="4_fm80t"]
-[ext_resource type="Script" uid="uid://7bdcfw1rvj6g" path="res://scenes/player/state_machine.gd" id="6_0owmy"]
+[ext_resource type="PackedScene" uid="uid://dr54vnk6swpir" path="res://scenes/state_machine/state_machine.tscn" id="5_gx1jg"]
 [ext_resource type="Script" uid="uid://b75gcdovybsia" path="res://scenes/player/player_idle.gd" id="7_qek5x"]
 [ext_resource type="Script" uid="uid://30y1cb6c86a3" path="res://scenes/player/player_jump.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://dxigcirv404hn" path="res://scenes/player/player_run.gd" id="10_h17s1"]
@@ -317,10 +317,44 @@ animation = &"attack_ground_1"
 position = Vector2(4, 11)
 shape = SubResource("CapsuleShape2D_lvxji")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("6_0owmy")
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
 
-[node name="PlayerIdle" type="Node" parent="StateMachine"]
+[node name="SkillTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(5, 12)
+shape = SubResource("CapsuleShape2D_fcs02")
+
+[node name="HitboxAttackGround1Right" type="Area2D" parent="."]
+position = Vector2(39, 6)
+monitoring = false
+monitorable = false
+script = ExtResource("16_myrg7")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="HitboxAttackGround1Right"]
+position = Vector2(3, 2)
+polygon = PackedVector2Array(-7, -18, 9, -3, 9, 7, -3, 18, -17, 20, -5, 7, -5, 0, -15, -16)
+
+[node name="HitboxAttackGround1Left" type="Area2D" parent="."]
+position = Vector2(-36, 10)
+monitoring = false
+monitorable = false
+script = ExtResource("16_myrg7")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="HitboxAttackGround1Left"]
+position = Vector2(3, 2)
+rotation = 3.1415927
+polygon = PackedVector2Array(-7, -18, 9, -3, 9, 7, -3, 18, -17, 20, -5, 7, -5, 0, -15, -16)
+
+[node name="StateMachine" parent="." instance=ExtResource("5_gx1jg")]
+
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("7_qek5x")
 
 [node name="PlayerRun" type="Node" parent="StateMachine"]
@@ -343,27 +377,3 @@ script = ExtResource("14_ugbui")
 
 [node name="PlayerHelmBreakerLand" type="Node" parent="StateMachine"]
 script = ExtResource("15_fcs02")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-
-[node name="SkillTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Hurtbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(5, 12)
-shape = SubResource("CapsuleShape2D_fcs02")
-
-[node name="HitboxAttackGround1" type="Area2D" parent="."]
-position = Vector2(30, 6)
-monitoring = false
-monitorable = false
-script = ExtResource("16_myrg7")
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="HitboxAttackGround1"]
-position = Vector2(3, 2)
-polygon = PackedVector2Array(-7, -18, 9, -3, 9, 7, -3, 18, -17, 20, -5, 7, -5, 0, -15, -16)

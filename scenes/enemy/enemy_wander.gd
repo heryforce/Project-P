@@ -8,6 +8,8 @@ class_name EnemyWander
 var turn: int = 1
 
 func enter() -> void:
+	enemy.sig_hurt.connect(on_sig_hurt)
+	wander_timer.connect("timeout", on_timer_timeout)
 	if anim_sprite.flip_h == true:
 		anim_sprite.flip_h = false
 		turn = 1
@@ -19,6 +21,7 @@ func enter() -> void:
 	anim_sprite.play("run")
 
 func exit() -> void:
+	wander_timer.disconnect("timeout", on_timer_timeout)
 	pass
 	
 func update(delta: float) -> void:
@@ -26,12 +29,12 @@ func update(delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	enemy.velocity.x = GameManager.SPEED * delta * turn
-	print(turn)
 	pass
 
 func on_timer_timeout() -> void:
-	print("transition to idle")
 	enemy.velocity.x = 0.0
-	transition.emit(self, "EnemyIdle")
+	transition.emit(self, "Idle")
 	pass
-	
+
+func on_sig_hurt() -> void:
+	transition.emit(self, "EnemyHurt")

@@ -24,4 +24,4 @@ func physics_update(delta: float) -> void:
 	pass
 
 func is_anim_finished() -> void:
-	transition.emit(self, "PlayerIdle")
+	transition.emit(self, "Idle")
