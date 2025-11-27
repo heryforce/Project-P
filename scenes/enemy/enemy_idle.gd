@@ -6,8 +6,12 @@ class_name EnemyIdle
 @onready var enemy: Enemy = $"../.."
 @onready var idle_timer: Timer = $"../../IdleTimer"
 
-func enter() -> void:
+func _ready():
 	enemy.sig_hurt.connect(on_sig_hurt)
+	enemy.sig_chase.connect(on_sig_chase)
+	pass
+
+func enter() -> void:
 	idle_timer.connect("timeout", _on_timer_timeout)
 	idle_timer.start()
 	anim_sprite.play("idle")
@@ -29,3 +33,7 @@ func _on_timer_timeout() -> void:
 
 func on_sig_hurt() -> void:
 	transition.emit(self, "EnemyHurt")
+
+func on_sig_chase() -> void:
+	#emit transition to chase state
+	pass

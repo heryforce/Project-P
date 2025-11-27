@@ -6,8 +6,11 @@ class_name EnemyHurt
 @onready var enemy: Enemy = $"../.."
 @onready var idle_timer: Timer = $"../../IdleTimer"
 
-func enter() -> void:
+func _ready():
 	idle_timer.connect("timeout", _on_timer_timeout)
+	pass
+
+func enter() -> void:
 	idle_timer.start()
 	anim_sprite.play("hurt")
 

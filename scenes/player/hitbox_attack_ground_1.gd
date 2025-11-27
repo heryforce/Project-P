@@ -8,6 +8,6 @@ func _ready() -> void:
 
 
 func on_hit(body) -> void:
-	if body is Enemy:
+	if body is Clone:
 		body.hurt(player.getPower())
 	pass

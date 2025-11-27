@@ -6,9 +6,9 @@ class_name Player
 
 var _can_jump: bool = true
 var _ignore_gravity: bool = false
-var _pv: int = 100
-var _mana: int = 100
-var _power: int = 10
+@export var _pv: int = 100
+@export var _mana: int = 100
+@export var _power: int = 10
 
 func _ready() -> void:
 	pass

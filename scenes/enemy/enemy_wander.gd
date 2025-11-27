@@ -7,8 +7,12 @@ class_name EnemyWander
 @onready var wander_timer: Timer = $"../../WanderingTimer"
 var turn: int = 1
 
-func enter() -> void:
+func _ready():
 	enemy.sig_hurt.connect(on_sig_hurt)
+	enemy.sig_chase.connect(on_sig_chase)
+	pass
+
+func enter() -> void:
 	wander_timer.connect("timeout", on_timer_timeout)
 	if anim_sprite.flip_h == true:
 		anim_sprite.flip_h = false
@@ -38,3 +42,7 @@ func on_timer_timeout() -> void:
 
 func on_sig_hurt() -> void:
 	transition.emit(self, "EnemyHurt")
+
+func on_sig_chase() -> void:
+	#emit transition to chase state
+	pass
