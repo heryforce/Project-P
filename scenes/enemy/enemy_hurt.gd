@@ -6,6 +6,10 @@ class_name EnemyHurt
 @onready var enemy: Enemy = $"../.."
 @onready var idle_timer: Timer = $"../../IdleTimer"
 
+func _ready():
+	idle_timer.connect("timeout", _on_timer_timeout)
+	pass
+
 func enter() -> void:
 	idle_timer.start()
 	anim_sprite.play("hurt")
@@ -14,7 +18,8 @@ func exit() -> void:
 	pass
 	
 func update(delta: float) -> void:
-	pass
+	if enemy.getPv() <= 0:
+		transition.emit(self, "EnemyDead")
 
 func physics_update(delta: float) -> void:
 	pass

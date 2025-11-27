@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bsccb0oiflnmq" path="res://scenes/game/game.gd" id="1_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://crgsi7cys1gkj" path="res://scenes/map/map.tscn" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://bqh060cu8sdfs" path="res://scenes/player/player.tscn" id="2_7h61r"]
-[ext_resource type="PackedScene" uid="uid://7q5kpwe2gm2j" path="res://scenes/enemy/enemy.tscn" id="4_kelw5"]
+[ext_resource type="PackedScene" uid="uid://7q5kpwe2gm2j" path="res://scenes/enemy/clone/clone.tscn" id="4_kelw5"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0sr1o")
@@ -14,5 +14,5 @@ position = Vector2(42, 99)
 [node name="Player" parent="." instance=ExtResource("2_7h61r")]
 position = Vector2(92, 204)
 
-[node name="Enemy" parent="." instance=ExtResource("4_kelw5")]
-position = Vector2(213, 206)
+[node name="Clone" parent="." instance=ExtResource("4_kelw5")]
+position = Vector2(567, 162)

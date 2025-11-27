@@ -6,11 +6,18 @@ class_name EnemyIdle
 @onready var enemy: Enemy = $"../.."
 @onready var idle_timer: Timer = $"../../IdleTimer"
 
+func _ready():
+	enemy.sig_hurt.connect(on_sig_hurt)
+	enemy.sig_chase.connect(on_sig_chase)
+	pass
+
 func enter() -> void:
+	idle_timer.connect("timeout", _on_timer_timeout)
 	idle_timer.start()
 	anim_sprite.play("idle")
 
 func exit() -> void:
+	idle_timer.disconnect("timeout", _on_timer_timeout)
 	pass
 	
 func update(delta: float) -> void:
@@ -22,4 +29,11 @@ func physics_update(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	transition.emit(self, "EnemyWander")
-	pass # Replace with function body.
+	pass
+
+func on_sig_hurt() -> void:
+	transition.emit(self, "EnemyHurt")
+
+func on_sig_chase() -> void:
+	#emit transition to chase state
+	pass
