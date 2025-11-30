@@ -14,15 +14,15 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
+	if is_on_floor():
+		setCanJump(true)
+	else:
+		setCanJump(false)
 	pass
 	
 func _physics_process(delta: float) -> void:
-	if is_on_floor() == false:
-		setCanJump(false)
-		if getIgnoreGravity() == false:
-			velocity.y += GameManager.GRAVITY * delta
-	else:
-		setCanJump(true)
+	if getIgnoreGravity() == false:
+		velocity.y += GameManager.GRAVITY * delta
 	move_and_slide()
 
 func setCanJump(value: bool) -> void:
@@ -34,6 +34,9 @@ func canJump() -> bool:
 func getIgnoreGravity() -> bool:
 	return _ignore_gravity
 
+func setIgnoreGravity(value: bool) -> void:
+	_ignore_gravity = value
+
 func getPv() -> int:
 	return _pv
 
@@ -42,3 +45,6 @@ func setPv(pv: int) -> void:
 
 func getPower() -> int:
 	return _power
+
+func setPower(value: int) -> void:
+	_power = value

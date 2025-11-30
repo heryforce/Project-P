@@ -14,8 +14,7 @@ func exit() -> void:
 func update(delta: float) -> void:
 	var axis = Input.get_axis("run_left", "run_right")
 	if Input.is_action_just_pressed("jump"):
-		if player.canJump():
-			transition.emit(self, "PlayerJump")
+		transition.emit(self, "PlayerJump")
 	if Input.is_action_just_pressed("attack"):
 		transition.emit(self, "PlayerAttack")
 	if axis != 0.0:
