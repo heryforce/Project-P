@@ -24,8 +24,8 @@ func physics_update(delta: float) -> void:
 	var axis_y = Input.get_axis("jump", "crouch")
 
 	player.velocity.x = GameManager.SPEED * delta * axis_x
-	if axis_y == 1.0 and Input.is_action_just_pressed("attack"):
-		transition.emit(self, "PlayerHelmBreakerFall")
+	# if axis_y == 1.0 and Input.is_action_just_pressed("attack"):
+	# 	transition.emit(self, "PlayerHelmBreakerFall")
 	
 	if player.is_on_floor():
 		if player.velocity.x == 0.0:
