@@ -7,7 +7,7 @@ class_name PlayerHelmBreakerLand
 
 
 func enter() -> void:
-	# anim_sprite.play("helm_break_land")
+	anim_sprite.play("helm_break_land")
 	anim_sprite.animation_finished.connect(is_anim_finished)
 	
 
