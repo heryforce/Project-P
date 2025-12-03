@@ -23,14 +23,8 @@ func physics_update(delta: float) -> void:
 	player.velocity.x = GameManager.SPEED * delta * axis_x
 	if axis_x == 0.0:
 		transition.emit(self, "Idle")
-	else:
-		if axis_x > 0.0:
-			anim_sprite.flip_h = false
-		else:
-			anim_sprite.flip_h = true
 
 	if Input.is_action_just_pressed("jump"):
 		transition.emit(self, "PlayerJump")
 	if Input.is_action_just_pressed("attack"):
-		player.velocity.x = 0.0
 		transition.emit(self, "PlayerAttack")

@@ -18,7 +18,11 @@ func _process(delta: float) -> void:
 		setCanJump(true)
 	else:
 		setCanJump(false)
-	pass
+	var axis_x = Input.get_axis("run_left", "run_right")
+	if axis_x > 0.0:
+		anim_sprite.flip_h = false
+	else:
+		anim_sprite.flip_h = true
 	
 func _physics_process(delta: float) -> void:
 	if getIgnoreGravity() == false:

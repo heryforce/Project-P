@@ -26,7 +26,7 @@ func physics_update(delta: float) -> void:
 	var axis_y = Input.get_axis("jump", "crouch")
 	if Input.is_action_pressed("jump") and player.velocity.y > GameManager.MAX_JUMP_FORCE and player.getIgnoreGravity() == true:
 		print("flying")
-		player.velocity.y -= 25.0
+		player.velocity.y -= 50.0
 		print(player.velocity.y)
 	else:
 		player.setIgnoreGravity(false)
@@ -36,3 +36,5 @@ func physics_update(delta: float) -> void:
 		
 	if player.velocity.y > 0.0 and player.getIgnoreGravity() == false:
 		transition.emit(self, "PlayerFall")
+	if Input.is_action_just_pressed("attack"):
+		transition.emit(self, "PlayerAttack")

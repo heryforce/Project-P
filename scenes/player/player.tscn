@@ -1,16 +1,14 @@
-[gd_scene load_steps=42 format=3 uid="uid://bqh060cu8sdfs"]
+[gd_scene load_steps=40 format=3 uid="uid://bqh060cu8sdfs"]
 
 [ext_resource type="Script" uid="uid://ca4upie1hr1s" path="res://scenes/player/player.gd" id="1_p47bc"]
 [ext_resource type="Texture2D" uid="uid://b1pfvan8dvaj4" path="res://assets/characters/fantome/framesheet.png" id="2_gx1jg"]
-[ext_resource type="PackedScene" uid="uid://dr54vnk6swpir" path="res://scenes/state_machine/state_machine.tscn" id="5_gx1jg"]
-[ext_resource type="Script" uid="uid://b75gcdovybsia" path="res://scenes/player/player_idle.gd" id="7_qek5x"]
-[ext_resource type="Script" uid="uid://30y1cb6c86a3" path="res://scenes/player/player_jump.gd" id="9_5gtgg"]
-[ext_resource type="Script" uid="uid://dxigcirv404hn" path="res://scenes/player/player_run.gd" id="10_h17s1"]
-[ext_resource type="Script" uid="uid://drm47xuhn8lbn" path="res://scenes/player/player_fall.gd" id="10_je7p5"]
-[ext_resource type="Script" uid="uid://8oethlj0inxw" path="res://scenes/player/player_attack.gd" id="11_je7p5"]
-[ext_resource type="Script" uid="uid://d2w0my1m1177y" path="res://scenes/player/player_land.gd" id="13_gx1jg"]
-[ext_resource type="Script" uid="uid://c87bb18la0i23" path="res://scenes/player/player_helm_breaker_fall.gd" id="14_ugbui"]
-[ext_resource type="Script" uid="uid://cihyxg3yjqjw7" path="res://scenes/player/player_helm_breaker_land.gd" id="15_fcs02"]
+[ext_resource type="PackedScene" uid="uid://dr54vnk6swpir" path="res://scripts/states/state_machine.tscn" id="5_gx1jg"]
+[ext_resource type="Script" uid="uid://b75gcdovybsia" path="res://scripts/states/player_idle.gd" id="7_qek5x"]
+[ext_resource type="Script" uid="uid://30y1cb6c86a3" path="res://scripts/states/player_jump.gd" id="9_5gtgg"]
+[ext_resource type="Script" uid="uid://dxigcirv404hn" path="res://scripts/states/player_run.gd" id="10_h17s1"]
+[ext_resource type="Script" uid="uid://drm47xuhn8lbn" path="res://scripts/states/player_fall.gd" id="10_je7p5"]
+[ext_resource type="Script" uid="uid://8oethlj0inxw" path="res://scripts/states/player_attack.gd" id="11_je7p5"]
+[ext_resource type="Script" uid="uid://d2w0my1m1177y" path="res://scripts/states/player_land.gd" id="13_gx1jg"]
 [ext_resource type="Script" uid="uid://dsdluykiekthd" path="res://scenes/player/hitbox_attack_ground_1.gd" id="16_myrg7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
@@ -312,9 +310,3 @@ script = ExtResource("11_je7p5")
 
 [node name="PlayerLand" type="Node" parent="StateMachine"]
 script = ExtResource("13_gx1jg")
-
-[node name="PlayerHelmBreakerFall" type="Node" parent="StateMachine"]
-script = ExtResource("14_ugbui")
-
-[node name="PlayerHelmBreakerLand" type="Node" parent="StateMachine"]
-script = ExtResource("15_fcs02")
