@@ -13,7 +13,7 @@ func enter() -> void:
 	player.ignore_gravity = true
 	player.velocity.x = 0.0
 	player.velocity.y = 0.0
-	anim_sprite.play("helm_break_fall")
+	# anim_sprite.play("helm_break_fall")
 	skill_timer.start(0.3)
 	
 

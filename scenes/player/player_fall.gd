@@ -8,6 +8,7 @@ class_name PlayerFall
 
 func enter() -> void:
 	anim_sprite.play("fall")
+	player.setIgnoreGravity(false)
 	
 
 func exit() -> void:
