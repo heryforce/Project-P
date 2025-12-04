@@ -1,12 +1,12 @@
 [gd_scene load_steps=42 format=3 uid="uid://7q5kpwe2gm2j"]
 
 [ext_resource type="Script" uid="uid://br81y7byuv82r" path="res://scenes/enemy/clone/clone.gd" id="1_40wdo"]
-[ext_resource type="Texture2D" path="res://assets/characters/fantome/framesheet.png" id="2_40wdo"]
-[ext_resource type="PackedScene" uid="uid://dr54vnk6swpir" path="res://scenes/state_machine/state_machine.tscn" id="4_nbhyu"]
-[ext_resource type="Script" uid="uid://dkx1qj4pb72f6" path="res://scenes/enemy/enemy_idle.gd" id="5_gl05p"]
-[ext_resource type="Script" uid="uid://ci005g44k5mtk" path="res://scenes/enemy/enemy_wander.gd" id="6_cwlon"]
-[ext_resource type="Script" uid="uid://bbosvmna5obkk" path="res://scenes/enemy/enemy_hurt.gd" id="7_nbhyu"]
-[ext_resource type="Script" uid="uid://pql5fgkrf6p4" path="res://scenes/enemy/enemy_dead.gd" id="8_13gj6"]
+[ext_resource type="Texture2D" uid="uid://b1pfvan8dvaj4" path="res://assets/characters/fantome/framesheet.png" id="2_40wdo"]
+[ext_resource type="PackedScene" uid="uid://dr54vnk6swpir" path="res://scripts/states/state_machine.tscn" id="4_nbhyu"]
+[ext_resource type="Script" uid="uid://dkx1qj4pb72f6" path="res://scripts/states/enemy_idle.gd" id="5_gl05p"]
+[ext_resource type="Script" uid="uid://ci005g44k5mtk" path="res://scripts/states/enemy_wander.gd" id="6_cwlon"]
+[ext_resource type="Script" uid="uid://bbosvmna5obkk" path="res://scripts/states/enemy_hurt.gd" id="7_nbhyu"]
+[ext_resource type="Script" uid="uid://pql5fgkrf6p4" path="res://scripts/states/enemy_dead.gd" id="8_13gj6"]
 [ext_resource type="PackedScene" uid="uid://e6hmux1g5rkv" path="res://scenes/enemy/aggro_zone/aggro_zone.tscn" id="9_efhtm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]

@@ -27,6 +27,9 @@ func physics_update(delta: float) -> void:
 	# if axis_y == 1.0 and Input.is_action_just_pressed("attack"):
 	# 	transition.emit(self, "PlayerHelmBreakerFall")
 	
+	if Input.is_action_just_pressed("attack"):
+		transition.emit(self, "PlayerAttack")
+
 	if player.is_on_floor():
 		if player.velocity.x == 0.0:
 			transition.emit(self, "PlayerLand")
