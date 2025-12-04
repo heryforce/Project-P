@@ -37,4 +37,5 @@ func physics_update(delta: float) -> void:
 	if player.velocity.y > 0.0 and player.getIgnoreGravity() == false:
 		transition.emit(self, "PlayerFall")
 	if Input.is_action_just_pressed("attack"):
+		player.setIgnoreGravity(false)
 		transition.emit(self, "PlayerAttack")
