@@ -3,7 +3,7 @@ extends State
 class_name EnemyIdle
 
 @onready var anim_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
-@onready var enemy: Enemy = $"../.."
+@onready var enemy: Enemy = $"../../"
 @onready var idle_timer: Timer = $"../../IdleTimer"
 
 func _ready():
@@ -35,5 +35,5 @@ func on_sig_hurt() -> void:
 	transition.emit(self, "EnemyHurt")
 
 func on_sig_chase() -> void:
-	#emit transition to chase state
+	transition.emit(self, "EnemyChase")
 	pass

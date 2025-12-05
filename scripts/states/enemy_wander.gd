@@ -5,7 +5,6 @@ class_name EnemyWander
 @onready var anim_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var enemy: Enemy = $"../.."
 @onready var wander_timer: Timer = $"../../WanderingTimer"
-var turn: int = 1
 
 func _ready():
 	enemy.sig_hurt.connect(on_sig_hurt)
@@ -14,13 +13,11 @@ func _ready():
 
 func enter() -> void:
 	wander_timer.connect("timeout", on_timer_timeout)
+	wander_timer.start()
 	if anim_sprite.flip_h == true:
 		anim_sprite.flip_h = false
-		turn = 1
 	else:
 		anim_sprite.flip_h = true
-		turn = -1
-	wander_timer.start()
 	anim_sprite.play("run_first_frame")
 	anim_sprite.play("run")
 
@@ -32,7 +29,10 @@ func update(delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	enemy.velocity.x = GameManager.SPEED * delta * turn
+	if anim_sprite.flip_h == true:
+		enemy.move_left()
+	else:
+		enemy.move_right()
 	pass
 
 func on_timer_timeout() -> void:
@@ -44,5 +44,5 @@ func on_sig_hurt() -> void:
 	transition.emit(self, "EnemyHurt")
 
 func on_sig_chase() -> void:
-	#emit transition to chase state
+	transition.emit(self, "EnemyChase")
 	pass

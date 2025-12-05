@@ -30,7 +30,7 @@ func physics_update(delta: float) -> void:
 		print(player.velocity.y)
 	else:
 		player.setIgnoreGravity(false)
-	player.velocity.x = GameManager.SPEED * delta * axis_x
+	player.velocity.x = player.getMoveSpeed() * delta * axis_x
 	# if axis_y == 1.0 and Input.is_action_just_pressed("attack"):
 	# 	transition.emit(self, "PlayerHelmBreakerFall")
 		

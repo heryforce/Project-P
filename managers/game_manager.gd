@@ -1,6 +1,5 @@
 extends Node
 
-const SPEED: float = 10000.0
 const GRAVITY: float = 500.0
 const MAX_JUMP_FORCE: float = -250.0
 const HELM_BREAKER_SPEED: float = 300.0

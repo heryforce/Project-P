@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://7q5kpwe2gm2j"]
+[gd_scene load_steps=45 format=3 uid="uid://7q5kpwe2gm2j"]
 
 [ext_resource type="Script" uid="uid://br81y7byuv82r" path="res://scenes/enemy/clone/clone.gd" id="1_40wdo"]
 [ext_resource type="Texture2D" uid="uid://b1pfvan8dvaj4" path="res://assets/characters/fantome/framesheet.png" id="2_40wdo"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://ci005g44k5mtk" path="res://scripts/states/enemy_wander.gd" id="6_cwlon"]
 [ext_resource type="Script" uid="uid://bbosvmna5obkk" path="res://scripts/states/enemy_hurt.gd" id="7_nbhyu"]
 [ext_resource type="Script" uid="uid://pql5fgkrf6p4" path="res://scripts/states/enemy_dead.gd" id="8_13gj6"]
+[ext_resource type="Script" uid="uid://dm4hvg67utbyh" path="res://scripts/states/enemy_chase.gd" id="8_rwrdt"]
 [ext_resource type="PackedScene" uid="uid://e6hmux1g5rkv" path="res://scenes/enemy/aggro_zone/aggro_zone.tscn" id="9_efhtm"]
+[ext_resource type="PackedScene" uid="uid://jyv02fbeqrbs" path="res://scenes/enemy/raycast/raycasting.tscn" id="9_rwrdt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
 atlas = ExtResource("2_40wdo")
@@ -278,9 +280,13 @@ animations = [{
 radius = 12.0
 height = 38.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ubxy"]
+radius = 52.17279
+
 [node name="Clone" type="CharacterBody2D"]
 script = ExtResource("1_40wdo")
 _pv = 110
+_move_speed = 5000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, 0)
@@ -312,6 +318,18 @@ script = ExtResource("7_nbhyu")
 [node name="EnemyDead" type="Node" parent="StateMachine"]
 script = ExtResource("8_13gj6")
 
+[node name="EnemyChase" type="Node" parent="StateMachine"]
+script = ExtResource("8_rwrdt")
+
 [node name="AggroZone" parent="." instance=ExtResource("9_efhtm")]
-scale = Vector2(13.800418, 13.518924)
+scale = Vector2(16.542236, 15.184912)
 monitorable = false
+
+[node name="Raycasting" parent="." instance=ExtResource("9_rwrdt")]
+
+[node name="RangeZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeZone"]
+position = Vector2(4, 6)
+scale = Vector2(0.8610221, 0.7375035)
+shape = SubResource("CircleShape2D_7ubxy")

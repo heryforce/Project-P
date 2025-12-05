@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://e6hmux1g5rkv"]
+[gd_scene load_steps=2 format=3 uid="uid://e6hmux1g5rkv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bibaw"]
 
 [node name="AggroZone" type="Area2D"]
+scale = Vector2(1.5343823, 1.5890598)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bibaw")
