@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cavxvli0pwysg"]
+
+[ext_resource type="Script" uid="uid://8oiq0qhcxl2g" path="res://scenes/states/player/player_attack.gd" id="1_vwy4g"]
+
+[node name="PlayerAttack" type="Node"]
+script = ExtResource("1_vwy4g")
+metadata/_custom_type_script = "uid://b4srrlt4v63km"

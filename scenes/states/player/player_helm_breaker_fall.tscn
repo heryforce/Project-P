@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvqkwx8cqrjam"]
+
+[ext_resource type="Script" uid="uid://bo4cycxwwbrn" path="res://scenes/states/player/player_helm_breaker_fall.gd" id="1_3f2eg"]
+
+[node name="PlayerHelmBreakerFall" type="Node"]
+script = ExtResource("1_3f2eg")
+metadata/_custom_type_script = "uid://b4srrlt4v63km"

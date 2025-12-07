@@ -44,10 +44,10 @@ func physics_update(delta: float) -> void:
 func on_body_exited(body) -> void:
 	if body is Player:
 		print("player exited the aggro zone")
-		transition.emit(self, "EnemyWander")
+		transition.emit(self, "Wander")
 
 func on_sig_hurt() -> void:
-	transition.emit(self, "EnemyHurt")
+	transition.emit(self, "Hurt")
 
 func on_in_range(body) -> void:
 	# turn to player and transition to attack the player

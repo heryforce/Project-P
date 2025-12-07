@@ -41,8 +41,8 @@ func on_timer_timeout() -> void:
 	pass
 
 func on_sig_hurt() -> void:
-	transition.emit(self, "EnemyHurt")
+	transition.emit(self, "Hurt")
 
 func on_sig_chase() -> void:
-	transition.emit(self, "EnemyChase")
+	transition.emit(self, "Chase")
 	pass

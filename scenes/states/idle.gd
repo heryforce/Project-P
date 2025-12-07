@@ -28,12 +28,12 @@ func physics_update(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	transition.emit(self, "EnemyWander")
+	transition.emit(self, "Wander")
 	pass
 
 func on_sig_hurt() -> void:
-	transition.emit(self, "EnemyHurt")
+	transition.emit(self, "Hurt")
 
 func on_sig_chase() -> void:
-	transition.emit(self, "EnemyChase")
+	transition.emit(self, "Chase")
 	pass

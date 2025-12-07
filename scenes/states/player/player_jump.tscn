@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvhhxi1yrper1"]
+
+[ext_resource type="Script" uid="uid://duafkj6alqx0n" path="res://scenes/states/player/player_jump.gd" id="1_liukg"]
+
+[node name="PlayerJump" type="Node"]
+script = ExtResource("1_liukg")
+metadata/_custom_type_script = "uid://b4srrlt4v63km"

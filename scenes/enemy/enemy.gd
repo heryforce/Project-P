@@ -7,12 +7,6 @@ var turn: int = 1
 
 
 func _ready() -> void:
-    # var children = get_children()
-    # for child in children:
-    #     if child is AnimatedSprite2D:
-    #         print(child)
-    # var anim_sprite: AnimatedSprite2D = get_node("./AnimatedSprite2D")
-    # print(anim_sprite)
     pass
 
 func _physics_process(delta: float) -> void:
@@ -36,3 +30,6 @@ func move() -> void:
     var delta: float = get_process_delta_time()
     velocity.x = _move_speed * delta * turn
     pass
+
+func stop_v() -> void:
+    velocity.x = 0.0

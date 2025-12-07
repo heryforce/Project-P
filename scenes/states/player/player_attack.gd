@@ -30,7 +30,10 @@ func physics_update(delta: float) -> void:
 
 func on_anim_finished() -> void:
 	if player.velocity.x == 0.0:
-		transition.emit(self, "Idle")
+		if player.is_on_floor():
+			transition.emit(self, "Idle")
+		else:
+			transition.emit(self, "PlayerFall")
 	else:
 		transition.emit(self, "PlayerRun")
 	pass

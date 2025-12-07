@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://s15q2utmf5u6"]
+
+[ext_resource type="Script" uid="uid://dg4txh6w3tq6w" path="res://scenes/states/player/player_land.gd" id="1_a1aoe"]
+
+[node name="PlayerLand" type="Node"]
+script = ExtResource("1_a1aoe")
+metadata/_custom_type_script = "uid://b4srrlt4v63km"

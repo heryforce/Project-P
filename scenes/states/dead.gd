@@ -21,4 +21,3 @@ func physics_update(delta: float) -> void:
 func on_anim_finished() -> void:
 	anim_sprite.animation_finished.disconnect(on_anim_finished)
 	enemy.queue_free()
-	transition.emit(self, "Idle")

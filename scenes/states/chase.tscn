@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cajqtey3w8tiq"]
+
+[ext_resource type="Script" uid="uid://d2tx561xci2sx" path="res://scenes/states/chase.gd" id="1_o1jfq"]
+
+[node name="Chase" type="Node"]
+script = ExtResource("1_o1jfq")
+metadata/_custom_type_script = "uid://b4srrlt4v63km"
