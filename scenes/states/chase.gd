@@ -27,19 +27,13 @@ func update(delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	# chase the player until he exits the aggro_zone
-	# maybe create a method to encapsulate the whole moving stuff
 	if player_pos.x >= enemy.position.x:
+		anim_sprite.flip_h = false
 		enemy.move_right()
 	else:
+		anim_sprite.flip_h = true
 		enemy.move_left()
-	anim_sprite.play("run")
 	pass
-
-# func on_body_entered(body) -> void:
-# 	if body is Player:
-# 		print("player entered the aggro zone")
-# 		# chase 
 
 func on_body_exited(body) -> void:
 	if body is Player:
@@ -52,5 +46,6 @@ func on_sig_hurt() -> void:
 func on_in_range(body) -> void:
 	# turn to player and transition to attack the player
 	if body is Player:
+		transition.emit(self, "Attack")
 		print("IN RANGE TO ATTACK")
 	pass

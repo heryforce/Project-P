@@ -6,3 +6,8 @@ script/source = "extends Node
 
 [node name="Enemy" type="CharacterBody2D"]
 script = SubResource("GDScript_883im")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true

@@ -22,3 +22,6 @@ func update(delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	pass
+
+func on_sig_hurt() -> void:
+	transition.emit(self, "PlayerHurt")

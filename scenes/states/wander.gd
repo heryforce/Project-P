@@ -19,7 +19,10 @@ func enter() -> void:
 	else:
 		anim_sprite.flip_h = true
 	anim_sprite.play("run_first_frame")
-	anim_sprite.play("run")
+	if anim_sprite.flip_h == true:
+		enemy.move_left()
+	else:
+		enemy.move_right()
 
 func exit() -> void:
 	wander_timer.disconnect("timeout", on_timer_timeout)
@@ -29,14 +32,11 @@ func update(delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	if anim_sprite.flip_h == true:
-		enemy.move_left()
-	else:
-		enemy.move_right()
 	pass
 
 func on_timer_timeout() -> void:
-	enemy.velocity.x = 0.0
+	print("TIMEOUT")
+	enemy.stop_v()
 	transition.emit(self, "Idle")
 	pass
 

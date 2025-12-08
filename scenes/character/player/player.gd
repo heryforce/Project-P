@@ -1,15 +1,9 @@
-extends CharacterBody2D
+extends Character
 
 class_name Player
 
-@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
-
 var _can_jump: bool = true
 var _ignore_gravity: bool = false
-@export var _pv: int = 100
-@export var _mana: int = 100
-@export var _power: int = 10
-@export var _move_speed: float = 10000.0
 
 func _ready() -> void:
 	pass
@@ -41,21 +35,3 @@ func getIgnoreGravity() -> bool:
 
 func setIgnoreGravity(value: bool) -> void:
 	_ignore_gravity = value
-
-func getPv() -> int:
-	return _pv
-
-func setPv(pv: int) -> void:
-	_pv = pv
-
-func getPower() -> int:
-	return _power
-
-func setPower(value: int) -> void:
-	_power = value
-
-func getMoveSpeed() -> float:
-	return _move_speed
-
-func setMoveSpeed(move_speed: float) -> void:
-	_move_speed = move_speed

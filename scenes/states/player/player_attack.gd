@@ -4,22 +4,22 @@ class_name PlayerAttack
 
 @onready var anim_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var player: Player = $"../.."
-@onready var hitbox_attack_ground_1_right: Area2D = $"../../HitboxAttackGround1Right"
-@onready var hitbox_attack_ground_1_left: Area2D = $"../../HitboxAttackGround1Left"
+@onready var hitbox_simple_attack_1_r: Area2D = $"../../HitboxSimpleAttack1R"
+@onready var hitbox_simple_attack_1_l: Area2D = $"../../HitboxSimpleAttack1L"
 
 func enter() -> void:
 	anim_sprite.animation_finished.connect(on_anim_finished)
-	anim_sprite.play("attack_ground_1")
 	if player.anim_sprite.flip_h == false:
-		hitbox_attack_ground_1_right.monitoring = true
+		hitbox_simple_attack_1_r.monitoring = true
 	else:
-		hitbox_attack_ground_1_left.monitoring = true
+		hitbox_simple_attack_1_l.monitoring = true
+	anim_sprite.play("attack_ground_1")
 
 
 func exit() -> void:
 	anim_sprite.animation_finished.disconnect(on_anim_finished)
-	hitbox_attack_ground_1_right.monitoring = false
-	hitbox_attack_ground_1_left.monitoring = false
+	hitbox_simple_attack_1_r.monitoring = false
+	hitbox_simple_attack_1_l.monitoring = false
 	
 	
 func update(delta: float) -> void:
