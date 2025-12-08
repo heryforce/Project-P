@@ -5,3 +5,5 @@
 [node name="Attack" type="Node"]
 script = ExtResource("1_vwy4g")
 metadata/_custom_type_script = "uid://b4srrlt4v63km"
+
+[node name="AttackTimer" type="Timer" parent="."]

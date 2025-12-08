@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://7q5kpwe2gm2j"]
+[gd_scene load_steps=47 format=3 uid="uid://7q5kpwe2gm2j"]
 
 [ext_resource type="Script" uid="uid://br81y7byuv82r" path="res://scenes/character/enemy/clone/clone.gd" id="1_bfckv"]
 [ext_resource type="Texture2D" uid="uid://b1pfvan8dvaj4" path="res://assets/characters/fantome/framesheet.png" id="2_co38y"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bwk2owicv0ss3" path="res://scenes/states/hurt.tscn" id="7_0nh4u"]
 [ext_resource type="PackedScene" uid="uid://ccvmc0f7oopxe" path="res://scenes/states/wander.tscn" id="8_6lf60"]
 [ext_resource type="PackedScene" uid="uid://e6hmux1g5rkv" path="res://scenes/character/enemy/aggro_zone/aggro_zone.tscn" id="9_37b24"]
+[ext_resource type="PackedScene" uid="uid://cke404y3i50bb" path="res://scenes/states/attack.tscn" id="9_i5rtr"]
 [ext_resource type="PackedScene" uid="uid://jyv02fbeqrbs" path="res://scenes/character/enemy/raycast/raycasting.tscn" id="10_1uv64"]
 [ext_resource type="PackedScene" uid="uid://bbn8whwr36ht2" path="res://scenes/hitbox/hitbox.tscn" id="11_co38y"]
 
@@ -317,6 +318,8 @@ one_shot = true
 
 [node name="Wander" parent="StateMachine" instance=ExtResource("8_6lf60")]
 
+[node name="Attack" parent="StateMachine" instance=ExtResource("9_i5rtr")]
+
 [node name="AggroZone" parent="." instance=ExtResource("9_37b24")]
 scale = Vector2(16.542236, 15.184912)
 monitorable = false
@@ -324,6 +327,7 @@ monitorable = false
 [node name="Raycasting" parent="." instance=ExtResource("10_1uv64")]
 
 [node name="RangeZone" type="Area2D" parent="."]
+scale = Vector2(0.68000126, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeZone"]
 position = Vector2(4, 6)
@@ -331,12 +335,16 @@ scale = Vector2(0.8610221, 0.7375035)
 shape = SubResource("CircleShape2D_7ubxy")
 
 [node name="HitboxAttackR" parent="." instance=ExtResource("11_co38y")]
+monitoring = false
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxAttackR"]
 position = Vector2(21, -2)
 polygon = PackedVector2Array(0, 0, 12, 1, 17, 16, 12, 23, 1, 31, -3, 26, -3, 18, -3, 4)
 
 [node name="HitboxAttackL" parent="." instance=ExtResource("11_co38y")]
+monitoring = false
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxAttackL"]
 position = Vector2(-22, 1)

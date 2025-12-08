@@ -19,6 +19,6 @@ func physics_update(delta: float) -> void:
 	pass
 
 func on_anim_finished() -> void:
+	print("YOU'RE DEAD, WHAT A SHAME...")
 	anim_sprite.animation_finished.disconnect(on_anim_finished)
 	player.queue_free()
-	print("YOU'RE DEAD, WHAT A SHAME...")

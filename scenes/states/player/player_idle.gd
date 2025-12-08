@@ -5,6 +5,10 @@ class_name PlayerIdle
 @onready var anim_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var player: Player = $"../.."
 
+func _ready() -> void:
+	player.sig_hurt.connect(on_sig_hurt)
+
+
 func enter() -> void:
 	anim_sprite.play("idle")
 

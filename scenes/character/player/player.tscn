@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bqh060cu8sdfs"]
+[gd_scene load_steps=47 format=3 uid="uid://bqh060cu8sdfs"]
 
 [ext_resource type="Script" uid="uid://ca4upie1hr1s" path="res://scenes/character/player/player.gd" id="1_68dt2"]
 [ext_resource type="Texture2D" uid="uid://b1pfvan8dvaj4" path="res://assets/characters/fantome/framesheet.png" id="2_gx1jg"]
@@ -9,11 +9,33 @@
 [ext_resource type="PackedScene" uid="uid://bvhhxi1yrper1" path="res://scenes/states/player/player_jump.tscn" id="9_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://cavxvli0pwysg" path="res://scenes/states/player/player_attack.tscn" id="10_fm80t"]
 [ext_resource type="PackedScene" uid="uid://bbn8whwr36ht2" path="res://scenes/hitbox/hitbox.tscn" id="10_h17s1"]
+[ext_resource type="PackedScene" uid="uid://d03ibw3wy7cw0" path="res://scenes/states/player/player_hurt.tscn" id="10_in2if"]
 [ext_resource type="PackedScene" uid="uid://s15q2utmf5u6" path="res://scenes/states/player/player_land.tscn" id="10_ugbui"]
+[ext_resource type="PackedScene" uid="uid://dcgfl6mqbq1tt" path="res://scenes/states/player/player_dead.tscn" id="11_m5h5h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
 atlas = ExtResource("2_gx1jg")
 region = Rect2(0, 325, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5h5h"]
+atlas = ExtResource("2_gx1jg")
+region = Rect2(0, 130, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcjji"]
+atlas = ExtResource("2_gx1jg")
+region = Rect2(65, 130, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuskr"]
+atlas = ExtResource("2_gx1jg")
+region = Rect2(130, 130, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkn36"]
+atlas = ExtResource("2_gx1jg")
+region = Rect2(195, 130, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aesnc"]
+atlas = ExtResource("2_gx1jg")
+region = Rect2(260, 130, 65, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcs02"]
 atlas = ExtResource("2_gx1jg")
@@ -127,6 +149,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_m5h5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcjji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuskr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkn36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aesnc")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fcs02")
 }, {
 "duration": 1.0,
@@ -146,7 +188,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lgqa7")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -250,7 +292,7 @@ _move_speed = 10000.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, 0)
 sprite_frames = SubResource("SpriteFrames_8ydkj")
-animation = &"attack_ground_1"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 11)
@@ -284,13 +326,21 @@ shape = SubResource("CapsuleShape2D_fcs02")
 
 [node name="PlayerLand" parent="StateMachine" instance=ExtResource("10_ugbui")]
 
+[node name="PlayerHurt" parent="StateMachine" instance=ExtResource("10_in2if")]
+
+[node name="PlayerDead" parent="StateMachine" instance=ExtResource("11_m5h5h")]
+
 [node name="HitboxSimpleAttack1R" parent="." instance=ExtResource("10_h17s1")]
+monitoring = false
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxSimpleAttack1R"]
 position = Vector2(27, -6)
 polygon = PackedVector2Array(0, -1, 7, 1, 14, 8, 17, 22, 13, 28, -13, 36, -13, 31, -7, 3, -7, -2)
 
 [node name="HitboxSimpleAttack1L" parent="." instance=ExtResource("10_h17s1")]
+monitoring = false
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxSimpleAttack1L"]
 position = Vector2(-18.999998, -8)

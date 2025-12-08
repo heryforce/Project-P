@@ -5,6 +5,9 @@ class_name PlayerRun
 @onready var anim_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var player: Player = $"../.."
 
+func _ready() -> void:
+	player.sig_hurt.connect(on_sig_hurt)
+
 func enter() -> void:
 	anim_sprite.play("run_first_frame")
 	anim_sprite.play("run")
@@ -28,3 +31,6 @@ func physics_update(delta: float) -> void:
 		transition.emit(self, "PlayerJump")
 	if Input.is_action_just_pressed("attack"):
 		transition.emit(self, "PlayerAttack")
+
+func on_sig_hurt() -> void:
+	transition.emit(self, "PlayerHurt")

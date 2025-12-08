@@ -7,6 +7,9 @@ class_name PlayerAttack
 @onready var hitbox_simple_attack_1_r: Area2D = $"../../HitboxSimpleAttack1R"
 @onready var hitbox_simple_attack_1_l: Area2D = $"../../HitboxSimpleAttack1L"
 
+func _ready() -> void:
+	player.sig_hurt.connect(on_sig_hurt)
+
 func enter() -> void:
 	anim_sprite.animation_finished.connect(on_anim_finished)
 	if player.anim_sprite.flip_h == false:
@@ -17,6 +20,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	set_deferred("monitoring", false)
 	anim_sprite.animation_finished.disconnect(on_anim_finished)
 	hitbox_simple_attack_1_r.monitoring = false
 	hitbox_simple_attack_1_l.monitoring = false
@@ -37,3 +41,6 @@ func on_anim_finished() -> void:
 	else:
 		transition.emit(self, "PlayerRun")
 	pass
+
+func on_sig_hurt() -> void:
+	transition.emit(self, "PlayerHurt")

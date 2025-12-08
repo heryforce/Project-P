@@ -6,7 +6,7 @@ class_name EnemyAttack
 @onready var hitbox_attack_r: Area2D = $"../../HitboxAttackR"
 @onready var hitbox_attack_l: Area2D = $"../../HitboxAttackL"
 @onready var enemy: Enemy = $"../.."
-@onready var attack_timer: Timer = $"../../AttackTimer"
+@onready var attack_timer: Timer = $"AttackTimer"
 
 func enter() -> void:
 	if attack_timer.time_left > 0.0:
@@ -33,4 +33,4 @@ func physics_update(delta: float) -> void:
 	pass
 
 func on_anim_finished() -> void:
-	transition.emit(self, "Chase")
+	transition.emit(self, "Idle")

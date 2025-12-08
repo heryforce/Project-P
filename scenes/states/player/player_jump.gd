@@ -5,6 +5,9 @@ class_name PlayerJump
 @onready var anim_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var player: Player = $"../.."
 
+func _ready() -> void:
+	player.sig_hurt.connect(on_sig_hurt)
+
 func enter() -> void:
 	if player.canJump():
 		player.setIgnoreGravity(true)
@@ -39,3 +42,6 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		player.setIgnoreGravity(false)
 		transition.emit(self, "PlayerAttack")
+
+func on_sig_hurt() -> void:
+	transition.emit(self, "PlayerHurt")

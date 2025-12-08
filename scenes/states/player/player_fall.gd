@@ -5,6 +5,8 @@ class_name PlayerFall
 @onready var anim_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var player: Player = $"../.."
 
+func _ready() -> void:
+	player.sig_hurt.connect(on_sig_hurt)
 
 func enter() -> void:
 	anim_sprite.play("fall")
@@ -35,3 +37,6 @@ func physics_update(delta: float) -> void:
 			transition.emit(self, "PlayerLand")
 		else:
 			transition.emit(self, "PlayerRun")
+
+func on_sig_hurt() -> void:
+	transition.emit(self, "PlayerHurt")
