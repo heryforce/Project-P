@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccvmc0f7oopxe"]
+
+[ext_resource type="Script" uid="uid://ckx778mtc25ih" path="res://scenes/states/wander.gd" id="1_8mnti"]
+
+[node name="Wander" type="Node"]
+script = ExtResource("1_8mnti")
+metadata/_custom_type_script = "uid://b4srrlt4v63km"
