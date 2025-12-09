@@ -20,10 +20,9 @@ func enter() -> void:
 
 
 func exit() -> void:
-	set_deferred("monitoring", false)
+	hitbox_simple_attack_1_r.set_deferred("monitoring", false)
+	hitbox_simple_attack_1_l.set_deferred("monitoring", false)
 	anim_sprite.animation_finished.disconnect(on_anim_finished)
-	hitbox_simple_attack_1_r.monitoring = false
-	hitbox_simple_attack_1_l.monitoring = false
 	
 	
 func update(delta: float) -> void:

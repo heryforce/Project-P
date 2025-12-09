@@ -27,10 +27,10 @@ func _physics_process(delta: float) -> void:
 	pass
 
 
-func getPower() -> int:
+func get_power() -> int:
 	return _power
 
-func setPower(value: int) -> void:
+func set_power(value: int) -> void:
 	_power = value
 
 
@@ -72,3 +72,18 @@ func stop_v() -> void:
 func hurt(power: int) -> void:
 	setPv(getPv() - power)
 	sig_hurt.emit()
+
+func knockback(value: String, knockback_direction: int) -> void:
+	var knockback_coef: float = 1.0
+	
+	if value == "low":
+		knockback_coef = 1.5
+	elif value == "medium":
+		knockback_coef = 2
+	elif value == "hard":
+		knockback_coef = 2.5
+	else:
+		print("unknown value")
+	
+	velocity.x = GameManager.KNOCKBACK_POWER * knockback_coef * knockback_direction
+	pass
