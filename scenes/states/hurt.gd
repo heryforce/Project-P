@@ -10,7 +10,7 @@ func _ready():
 	pass
 
 func enter() -> void:
-	enemy.stop_v()
+	# enemy.stop_v()
 	anim_sprite.play("hurt")
 
 func exit() -> void:

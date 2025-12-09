@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func enter() -> void:
 	if player.canJump():
-		player.setIgnoreGravity(true)
+		player.set_ignore_gravity(true)
 		print("entering jump")
 		anim_sprite.play("jump")
 	
@@ -27,20 +27,20 @@ func update(delta: float) -> void:
 func physics_update(delta: float) -> void:
 	var axis_x = Input.get_axis("run_left", "run_right")
 	var axis_y = Input.get_axis("jump", "crouch")
-	if Input.is_action_pressed("jump") and player.velocity.y > GameManager.MAX_JUMP_FORCE and player.getIgnoreGravity() == true:
+	if Input.is_action_pressed("jump") and player.velocity.y > GameManager.MAX_JUMP_FORCE and player.get_ignore_gravity() == true:
 		print("flying")
 		player.velocity.y -= 50.0
 		print(player.velocity.y)
 	else:
-		player.setIgnoreGravity(false)
+		player.set_ignore_gravity(false)
 	player.velocity.x = player.getMoveSpeed() * delta * axis_x
 	# if axis_y == 1.0 and Input.is_action_just_pressed("attack"):
 	# 	transition.emit(self, "PlayerHelmBreakerFall")
 		
-	if player.velocity.y > 0.0 and player.getIgnoreGravity() == false:
+	if player.velocity.y > 0.0 and player.get_ignore_gravity() == false:
 		transition.emit(self, "PlayerFall")
 	if Input.is_action_just_pressed("attack"):
-		player.setIgnoreGravity(false)
+		player.set_ignore_gravity(false)
 		transition.emit(self, "PlayerAttack")
 
 func on_sig_hurt() -> void:

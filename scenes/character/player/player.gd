@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		anim_sprite.flip_h = true
 	
 func _physics_process(delta: float) -> void:
-	if getIgnoreGravity() == false:
+	if get_ignore_gravity() == false:
 		velocity.y += GameManager.GRAVITY * delta
 	move_and_slide()
 
@@ -30,8 +30,8 @@ func setCanJump(value: bool) -> void:
 func canJump() -> bool:
 	return _can_jump
 
-func getIgnoreGravity() -> bool:
+func get_ignore_gravity() -> bool:
 	return _ignore_gravity
 
-func setIgnoreGravity(value: bool) -> void:
+func set_ignore_gravity(value: bool) -> void:
 	_ignore_gravity = value

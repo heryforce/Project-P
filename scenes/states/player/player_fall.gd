@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func enter() -> void:
 	anim_sprite.play("fall")
-	player.setIgnoreGravity(false)
+	player.set_ignore_gravity(false)
 	
 
 func exit() -> void:
