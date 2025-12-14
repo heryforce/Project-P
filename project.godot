@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Metroidvania"
-run/main_scene="uid://82g2f3n5e4w1"
+run/main_scene="uid://ek6tsxss5v6f"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
