@@ -10,7 +10,6 @@ func _ready():
 	pass
 
 func enter() -> void:
-	# player.stop_v()
 	anim_sprite.play("hurt")
 	if player.get_ignore_gravity() == true:
 		player.set_ignore_gravity(false)

@@ -10,6 +10,7 @@ func _ready() -> void:
 
 
 func enter() -> void:
+	player.set_jump_charge(2)
 	anim_sprite.play("idle")
 
 func exit() -> void:

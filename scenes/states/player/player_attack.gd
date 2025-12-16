@@ -29,6 +29,8 @@ func update(delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
+	var axis_x = Input.get_axis("run_left", "run_right")
+	player.velocity.x = player.getMoveSpeed() * delta * axis_x
 	pass
 
 func on_anim_finished() -> void:
