@@ -18,17 +18,9 @@ func exit() -> void:
 	
 	
 func update(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("jump") and player.get_jump_charge() > 0:
+		transition.emit(self, "PlayerJump")
 
- 
-func physics_update(delta: float) -> void:
-	var axis_x = Input.get_axis("run_left", "run_right")
-	var axis_y = Input.get_axis("jump", "crouch")
-
-	player.velocity.x = player.getMoveSpeed() * delta * axis_x
-	# if axis_y == 1.0 and Input.is_action_just_pressed("attack"):
-	# 	transition.emit(self, "PlayerHelmBreakerFall")
-	
 	if Input.is_action_just_pressed("attack"):
 		transition.emit(self, "PlayerAttack")
 
@@ -37,6 +29,17 @@ func physics_update(delta: float) -> void:
 			transition.emit(self, "PlayerLand")
 		else:
 			transition.emit(self, "PlayerRun")
+	pass
+
+ 
+func physics_update(delta: float) -> void:
+	var axis_x = Input.get_axis("run_left", "run_right")
+	# var axis_y = Input.get_axis("jump", "crouch")
+
+	player.velocity.x = player.getMoveSpeed() * delta * axis_x
+	# if axis_y == 1.0 and Input.is_action_just_pressed("attack"):
+	# 	transition.emit(self, "PlayerHelmBreakerFall")
+
 
 func on_sig_hurt() -> void:
 	transition.emit(self, "PlayerHurt")

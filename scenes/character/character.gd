@@ -58,6 +58,7 @@ func move_left() -> void:
 	move()
 	pass
 
+
 func move() -> void:
 	var delta: float = get_process_delta_time()
 	velocity.x = getMoveSpeed() * delta * turn
