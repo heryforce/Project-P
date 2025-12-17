@@ -1,13 +1,15 @@
 extends Control
 
-func _ready() -> void:
-	pass
+func _ready() :
+	$VBoxContainer/NewGameButton.grab_focus()
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass
 
 func _on_new_game_button_pressed() :
+	$Transition.play("FadeOut")
+	await $Transition.animation_finished
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 	
 func _on_load_game_button_pressed() :

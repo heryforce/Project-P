@@ -10,10 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Metroidvania"
-run/main_scene="uid://b5x2yxjfjr5ny"
 config/name="Project P"
-run/main_scene="uid://82g2f3n5e4w1"
+run/main_scene="uid://b5x2yxjfjr5ny"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 

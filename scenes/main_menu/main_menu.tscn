@@ -1,7 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5x2yxjfjr5ny"]
+[gd_scene load_steps=9 format=3 uid="uid://b5x2yxjfjr5ny"]
 
 [ext_resource type="Script" uid="uid://cir4opuy7kfgo" path="res://scenes/main_menu/main_menu.gd" id="1_0ebjn"]
 [ext_resource type="Texture2D" uid="uid://4pau8xci2gc5" path="res://assets/main_menu/DarkRain.png" id="1_fsom3"]
+[ext_resource type="Shader" uid="uid://cjs8enjicjdrm" path="res://scenes/main_menu/main_menu.gdshader" id="2_uqeha"]
+[ext_resource type="Texture2D" uid="uid://dgo61yeowbwsa" path="res://assets/main_menu/Logo.png" id="3_ob46e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wem23"]
+shader = ExtResource("2_uqeha")
+shader_parameter/speed = 0.2
+
+[sub_resource type="Animation" id="Animation_0ebjn"]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ob46e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uqeha"]
+_data = {
+&"FadeOut": SubResource("Animation_0ebjn"),
+&"RESET": SubResource("Animation_ob46e")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,16 +55,18 @@ grow_vertical = 2
 script = ExtResource("1_0ebjn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_wem23")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -574.0
+offset_top = -512.0
+offset_right = 574.0
+offset_bottom = 512.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_fsom3")
@@ -40,6 +84,12 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("3_ob46e")
+expand_mode = 1
 
 [node name="NewGameButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(300, 60)
@@ -68,6 +118,23 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
 text = "Quitter"
+
+[node name="Fade" type="ColorRect" parent="."]
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uqeha")
+}
 
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
